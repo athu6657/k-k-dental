@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <title>SSD Landing Page</title>
+  <style>
+    /* Reset and base styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: auto;
+    }
+
+    /* Video Background */
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 1;
+      /* Make sure it's fully visible */
+      pointer-events: none;
+      /* So it doesn't block clicks */
+    }
+
+    /* Dark overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(184, 72, 72, 0.5);
+      z-index: -1;
+    }
+
+    /* Landing content */
+    .content {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .content h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .content p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+    }
+
+    header {
+
+      padding: 15px 0;
+      color: rgb(255, 255, 255);
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(44, 167, 79, 0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .logo1 {
+      font-size: 24px;
+      font-weight: bold;
+      padding-left: 0%;
+      padding-right: 20px;
+
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: #92acac;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #efeeee;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #ffffff;
+      display: none;
+      flex-direction: column;
+      min-width: 150px;
+      padding: 0.5rem 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+
+    .dropdown-menu li {
+      padding: 0.5rem 1rem;
+    }
+
+    .dropdown-menu li a {
+      color: #000;
+      text-decoration: none;
+    }
+
+
+
+
+    @media (max-width: 768px) {
+      .content h1 {
+        font-size: 2.5rem;
+      }
+
+      .content p {
+        font-size: 1rem;
+      }
+
+      .play-button {
+        width: 60px;
+        height: 60px;
+      }
+
+      .play-button::before {
+        border-width: 12px 0 12px 20px;
+      }
+    }
+
+    /* Limit video background to hero section only */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero-section video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .hero-section .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    .content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      z-index: 1;
+      position: relative;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 50px;
+    }
+
+    .service-card {
+      background: rgb(207, 170, 170);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .service-name {
+      padding: 15px;
+      font-weight: bold;
+      color: #101011;
+    }
+
+    .service-name:hover {
+      color: aquamarine;
+    }
+
+    .about-section {
+      padding: 60px 20px;
+      background-color: #f9f9f9;
+    }
+
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .about-image {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-image img {
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .about-text {
+      flex: 2 1 400px;
+    }
+
+    .about-text .tag {
+      color: #00c2cb;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .about-text h2 {
+      font-size: 28px;
+      color: #222;
+      margin-bottom: 15px;
+    }
+
+    .about-text p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .read-more {
+      background-color: #00c2cb;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .read-more:hover {
+      background-color: #00a1a8;
+    }
+
+    .partners-section {
+      padding: 40px 20px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+
+    .partners-title {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .partners-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .partner-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      width: 150px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .partner-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .partner-card img {
+      max-width: 80px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .partner-card p {
+      font-weight: bold;
+      color: #555;
+      margin: 0;
+      size: 34px;
+    }
+
+    /* Button on Nav */
+    .appointment-btn {
+      background-color: #71c671;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: bold;
+    }
+
+    .appointment-btn:hover {
+      background-color: #5aae5a;
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal-box {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+      text-align: center;
+    }
+
+    .modal-box h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .appointment-form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .appointment-form button {
+      background-color: #71c671;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      font-size: 20px;
+      color: #555;
+      cursor: pointer;
+    }
+
+
+    /* Footer Container */
+    .footer {
+      background-color: #ffffff;
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      color: #333;
+      border-top: 1px solid #ddd;
+    }
+
+    /* Grid Layout */
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    /* Column Headings */
+    .footer h4 {
+      font-size: 16px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #00b7b7;
+      display: inline-block;
+      padding-bottom: 5px;
+      color: #004d4d;
+    }
+
+    /* List Styles */
+    .footer ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer ul li {
+      margin: 5px 0;
+    }
+
+    .footer ul li a {
+      text-decoration: none;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+
+    .footer ul li a:hover {
+      color: #00b7b7;
+    }
+
+    /* About Column */
+    .footer-col.about {
+      max-width: 280px;
+    }
+
+    .footer-col.about p {
+      margin: 10px 0;
+    }
+
+    /* Logo */
+    .footer .logo {
+      height: 90px;
+      width: 180px;
+      margin-bottom: 10px;
+      padding-left: 50px;
+    }
+    /* Social Icons */
+    .social-icons a {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .social-icons img {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Bottom Copyright */
+    .footer-bottom {
+      text-align: center;
+      background-color: #00b7b7;
+      color: white;
+      padding: 10px;
+      font-size: 13px;
+    }
+
+    .blog-section {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 100px;
+      background: #f9f9f9;
+      margin-bottom: 40px;
+    }
+
+    .blog-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+      margin-bottom: 40px;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      background-color: #dcebeb;
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-content h3 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #0b3e4c;
+    }
+
+    .card-content p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #007878;
+      padding-top: 10px;
+      border-top: 1px solid #eee;
+    }
+
+    .partners-section {
+      background-color: #f7fafd;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .blog {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .logo img {
+      height: 80px;
+      /* Adjust as needed */
+      width: auto;
+      /* Keeps aspect ratio */
+      max-width: 100%;
+      object-fit: contain;
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <nav>
+      <div class="logo"><img src="img/logo.jpg"></div>
+      <div class="logo1">K.K.DENTAL HOSPITAL</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="dental.html">Dental</a></li>
+        <li><a href="skin.html">Skincare</a></li>
+        <li><a href="contact.html">Contact</a></li>
+
+        <a href="https://wa.me/message/HBH4XOL4OTW7O1">
+          <button class="appointment-btn">Book Appointment</button>
+        </a>
+
+
+      </ul>
+    </nav>
+  </header>
+  <section class="hero-section">
+    <!-- Video Background -->
+    <video id="bgVideo" autoplay muted loop playsinline>
+      <source src="FINAL IMAGE/T2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+
+    <!-- Landing Content -->
+    <div class="content">
+      <h1>Welcome to K.K.DENTAL HOSPITAL and DHRIVA Skincare Center </h1>
+      <p>Smile brighter...Glow with confidence...One expert destination for teeth & skin</p>
+    </div>
+  </section>
+
+
+
+  <!--service section-->
+
+
+  <section class="about-section">
+    <div class="about-container">
+      <div class="about-image">
+        <img src="FINAL IMAGE/dr photo2.jpg" alt="dental implantologist,oral surgeon">
+      </div>
+      <div class="about-text">
+        <h5 class="tag">ABOUT US</h5>
+        <h2>K.K. DENTAL HOSPITAL</h2>
+        <h2>Dr. Karan Kaithwas</h2>
+        <h3>Reg.No.A-40832</h3><br>
+        <h4>Oral & Maxillofacial Surgeon | Dental Implantologist | Smile Design Expert</h4><br>
+        <p>
+          Dr. Karan Kaithwas, a skilled Oral and Maxillofacial Surgeon, brings over 7 years of dedicated experience in
+          the field of dentistry. As an expert in Smile Designing and a certified Dental Implantologist, Dr. Kaithwas is
+          committed to transforming smiles with precision and care. With a patient-centric approach and an eye for
+          aesthetics, he ensures that every treatment enhances both function and confidence. (Reg. No: A-40832)
+        </p>
+        <a href="about.html" class="read-more">Read More →</a>
+      </div>
+    </div>
+  </section>
+  <section class="about-section">
+    <div class="about-container">
+      <div class="about-image">
+        <img src="FINAL IMAGE/dr photot1.jpg" alt="Aesthetician and cosmetologist">
+      </div>
+      <div class="about-text">
+
+        <h2>DHRIVA Skin Care Center & Dermatology</h2>
+        <h2>Dr. Sneha Gaimukhe</h2>
+        <h4>Aesthetician & Cosmetologist</h4>
+        <br>
+        <p>
+          Sneha Gaimukhe is a dedicated Aesthetician and Cosmetologist, known for her personalized approach to skincare
+          and cosmetic treatments. Her passion for beauty and wellness, combined with hands-on expertise, allows her to
+          deliver radiant results that enhance each client’s natural charm. With a gentle touch and deep understanding
+          of aesthetics, she brings a refreshing experience to every session.
+        </p>
+        <a href="about.html" class="read-more">Read More →</a>
+      </div>
+    </div>
+  </section>
+  <section class="partners-section">
+    <h2 class="partners-title">Our Trusted Partners</h2>
+    <div class="partners-grid">
+
+      <div class="partner-card">
+        <img src="FINAL IMAGE/amazon.png" alt="Amazon Logo">
+        <p>Amazon</p>
+      </div>
+
+      <div class="partner-card">
+        <a href="https://health.sbigeneral.in/" target="_blank">
+          <img src="FINAL IMAGE/HCL.png" alt="HCL Logo"> </a><br><br>
+        <p>HCL</p>
+      </div>
+
+      <div class="partner-card">
+        <img src="FINAL IMAGE/hotsta.png" alt="Hotstart Logo">
+        <p>Hotstart</p>
+      </div>
+
+      <div class="partner-card">
+        <img src="FINAL IMAGE/medibuddy.png" alt="Medibuddy Logo">
+        <p>Medibuddy</p>
+      </div>
+
+      <div class="partner-card">
+        <img src="FINAL IMAGE/My dental plan.png" alt="My Dental Plan Logo"><br><br>
+        <p>My Dental Plan</p>
+      </div>
+
+      <div class="partner-card">
+        <img src="FINAL IMAGE/Syska company.png" alt="Syska Company Logo">
+        <p>Syska Company</p>
+      </div>
+
+      <div class="partner-card">
+        <img src="FINAL IMAGE/TCS.png" alt="TCS Logo">
+        <p>TCS</p>
+      </div>
+
+    </div>
+  </section>
+
+  <h2 class="blog">Our Latest Blog</h2>
+  <div class="blog-section">
+
+    <div class="blog-card">
+      <img src="FINAL IMAGE/blog1.jpg" alt="Best Soft Foods to Eat After Dental Treatment" />
+      <div class="card-content">
+        <h3>Chemical Peels: Benefits, Risks, and What to Expect</h3>
+        <p>
+          Dental treatments are the ultimate solution to removing damaged or infected teeth. The procedure is critical,
+          and recovery is essential for healing and comfort. During these scenarios, most people wonder what to eat
+          after tooth extraction, as one of the key aspects of getting a successful dental treatment is the selection of
+          the right foods that can aid in the healing process, minimize discomfort, and prevent further complications.
+          As stated, a hearty meal is the perfect solution after a long day in the dentist's chair.
+        </p>
+        <div class="card-meta">
+          <span>📅 7 jan, 2024</span>
+          <span>👨‍⚕️Harsh Chandela</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <img src="FINAL IMAGE/blog2.webp" alt="Why Chewing on Both Sides Matters More Than You Think" />
+      <div class="card-content">
+        <h3>Why Chewing on Both Sides Matters More Than You Think</h3>
+        <p>
+          Chewing is an automatic function most of us never think about. However, did you know that chewing on only one
+          side of your mouth can have long-term negative effects on your dental health, facial symmetry, and even
+          digestion? If you’re looking for expert advice, visiting the best dentist in Delhi or the best dental clinic
+          in Delhi can help you assess and correct these chewing habits. In this comprehensive guide, we will discuss
+          why chewing on both sides matters, the dangers of unilateral chewing. 
+        </p>
+        <div class="card-meta">
+          <span>📅 30 Aug, 2024</span>
+          <span>👨‍⚕️ Punam Rathod</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <img src="FINAL IMAGE/blog3.jpg" alt="Root Canal Treatment in Nagpur: Saving Your Smile, Restoring Your Health" />
+      <div class="card-content">
+        <h3>Aging Gracefully: Anti-Aging Skin Care Tips and Techniques</h3>
+        <p>
+          Root canal treatment, often referred to as endodontic therapy, is a dental procedure designed to treat and
+          save a tooth that has a severely infected or damaged pulp (the innermost part of the tooth). This damage can
+          occur due to deep cavities, cracks, trauma, or other dental issues. Without treatment, the infected tooth can
+          lead to severe pain and may eventually need to be extracted
+         This allows the tooth to be preserved, maintaining
+          its function and appearance in your smile.
+        </p>
+        <div class="card-meta">
+          <span>📅 30 Aug, 2024</span>
+          <span>👨‍⚕️ Ramkumar Raddy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="appointmentModal" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h2>Book an Appointment</h2>
+      <form class="appointment-form">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="tel" placeholder="Phone" required>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Left Column: Logo & About -->
+      <div class="footer-col about">
+        <img src="img/logo.jpg" alt="K K Dental" class="logo" />
+        <p>
+          Dr. Karan Kaithwas, with 7 years of expertise, welcomes you to Dentalcare. Experience exceptional smile designing and dental implantologist,oral surgeon.
+        </p>
+        <div class="social-icons">
+          <a href="http://wa.me/919610178202"><img
+              src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" /></a>
+          <a href="https://www.facebook.com/share/196fgCyUNY/?mibextid=wwXIfr"><img
+              src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/kk_dental_hospital_nagpur?igsh=MWs5MW4zaGFrZnhiZA%3D%3D&utm_source=qr"><img
+              src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" /></a>
+        </div>
+      </div>
+
+      <!-- Website Links -->
+      <div class="footer-col">
+        <h4>Website Links</h4>
+        <ul>
+          <li><a href="index.html">› Home</a></li>
+          <li><a href="about.html">› About Us</a></li>
+          <li><a href="dental.html">› Services</a></li>
+          <li><a href="#">› Blog</a></li>
+          <li><a href="contact.html">› Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Skin Treatments</a></li>
+          <li><a href="#">Periodontics</a></li>
+          <li><a href="#">Dental Treatments</a></li>
+          <li><a href="#">Cosmetic Surgery</a></li>
+          <li><a href="#">Laser Treatments</a></li>
+        </ul>
+      </div>
+
+      <!-- Nagpur Clinic -->
+      <div class="footer-col">
+        <h4>Nagpur Clinic</h4>
+
+        <p>
+          K K Dental Hospital,<br />
+          Meshram building,<br />
+          above pachpaoli medical shop,<br />
+          towards awade babu road,nagpur,<br />
+          Maharashtra-440017<br />
+
+          <strong>Call:</strong> +91-9322-338-004
+        </p>
+      </div>
+
+
+    </div>
+
+    <div class="footer-bottom">
+      © Copyright K.K.DENTAL Hospital and Dhirva Skincare Center. All Rights Reserved.
+    </div>
+  </footer>
+
+
+
+  <!-- Script for Play Button -->
+  <script>
+    
+
+
+
+  </script>
+
+
+</body>
+
+</html>

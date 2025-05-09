@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dental Services</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+      padding: 10px;
+    }
+
+    h1 {
+      margin-top: 40px;
+      text-align: center;
+      margin-bottom: 50px;
+      color: black;
+      text-shadow: 0 12px 16px rgb(74, 69, 69);
+    }
+
+    .services-grid {
+      padding-left: 130px;
+      padding-right: 130px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background: #FFF1D6;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.2s ease;
+      min-height: 350px;
+      width: 350px;
+      margin-bottom: 20px;
+    }
+
+    .service-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .service-name {
+      padding: 15px;
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    .service-name:hover {
+      color: rgb(239, 99, 99);
+    }
+
+    nav {
+      margin-top: auto;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 100%;
+      margin: 0 auto;
+      height: 90px;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #000;
+      font-size: 18px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: rgb(239, 99, 99);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+
+    .menu-toggle {
+      display: block;
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    .contact-wrapper {
+      flex-direction: column;
+    }
+
+    .contact-info,
+    .map-container {
+      flex: 1 1 100%;
+      padding: 0;
+    }
+
+    nav {
+
+      justify-content: space-between;
+      align-items: center;
+      max-width: 100%;
+      margin: 0 auto;
+      height: 90px;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #000;
+      font-size: 18px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: rgb(239, 99, 99);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 22px;
+      }
+
+      .contact-wrapper {
+        flex-direction: column;
+      }
+
+      .contact-info,
+      .map-container {
+        flex: 1 1 100%;
+        padding: 0;
+      }
+
+      .map-container iframe {
+        height: 250px;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .social-icons {
+        justify-content: center;
+      }
+    }
+
+    /* Footer Container */
+    .footer {
+      background-color: #ffffff;
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      color: #333;
+      border-top: 1px solid #ddd;
+    }
+
+    /* Grid Layout */
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    /* Column Headings */
+    .footer h4 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid rgb(239, 99, 99);
+      display: inline-block;
+      padding-bottom: 5px;
+      color: #004d4d;
+    }
+
+    /* List Styles */
+    .footer ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer ul li {
+      margin: 5px 0;
+    }
+
+    .footer ul li a {
+      text-decoration: none;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+
+    .footer ul li a:hover {
+      color: rgb(239, 99, 99);
+    }
+
+    /* About Column */
+    .footer-col.about {
+      max-width: 280px;
+    }
+
+    .footer-col.about p {
+      margin: 10px 0;
+    }
+
+    /* Logo */
+    .footer .logo {
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    /* Social Icons */
+    .social-icons a {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .social-icons img {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Bottom Copyright */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    nav {
+      background-color: #f7f7f6;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #a24b4d;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: #a24b4d;
+      color: #fff;
+    }
+
+
+
+
+    /* Toggle icon */
+    .menu-toggle {
+      font-size: 24px;
+      display: none;
+      cursor: pointer;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      background-color: #FFF1D6;
+      color: black;
+      padding: 10px;
+      font-size: 13px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+
+    }
+
+    .logo img {
+      height: 80px;
+      /* Adjust as needed */
+      width: auto;
+      /* Keeps aspect ratio */
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background-color: #fff;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        display: none;
+        padding: 20px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .menu-toggle .bar {
+        width: 25px;
+        height: 4px;
+        background-color: #fff;
+        margin: 5px 0;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-list {
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        width: 200px;
+        border-radius: 5px;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+      }
+
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+      }
+
+      nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .logo img {
+        height: 45px;
+        /* Further adjust for mobile screens */
+        width: auto;
+        /* Maintain aspect ratio */
+      }
+
+      .service-cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        /* Smaller gap between cards */
+        padding: 10px;
+        /* Less padding on mobile */
+      }
+
+      .service-card {
+        margin: 10px 0;
+        /* Keep top/bottom margin between cards */
+        padding: 12px;
+        /* Less padding inside the card */
+      }
+
+      .card-image img {
+        margin-bottom: 10px;
+        /* Reduced margin below image */
+      }
+
+      .card-content {
+        padding: 10px 5px;
+        /* Reduced padding inside card content */
+      }
+
+      header {
+        padding: 15px;
+      }
+
+      .service-card {
+        padding: 15px;
+      }
+
+      .intro h1 {
+        font-size: 2rem;
+      }
+
+      .intro p {
+        font-size: 1rem;
+      }
+
+      footer p {
+        font-size: 0.9rem;
+      }
+
+      .services h1 {
+        font-size: 2rem;
+      }
+
+      .service-card h2 {
+        font-size: 1.1rem;
+      }
+
+      .service-card p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo"><img src="img/logo.jpg"></div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="dental.html">Dental</a></li>
+        <li><a href="skin.html">Skin</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>Our Dental Services</h1>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="image/general-dentistry.jpg" alt="General Dentistry
+      ">
+      <div class="service-name">General Dentistry
+      </div>
+      <p>We provide comprehensive dental care including check-ups, fillings, preventive cleanings, and oral health
+        education to keep your smile healthy for life.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/Cosmetic.png" alt="Cosmetic Dentistry">
+      <div class="service-name">Cosmetic Dentistry</div>
+      <p>Transform your smile with treatments like teeth whitening, veneers, bonding, and reshaping. Designed to enhance
+        the beauty and confidence of your smile.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/orthodontics.jpg" alt="Orthodontics">
+      <div class="service-name">Orthodontics</div>
+      <p>Correct crooked teeth, gaps, and bite issues with braces or clear aligners like Invisalign. Ideal for both
+        children and adults seeking a straighter smile.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/Dental Implants.jpg" alt="Dental Implants">
+      <div class="service-name">Dental Implants</div>
+      <p>A permanent solution for missing teeth. Dental implants restore function, aesthetics, and confidence with a
+        natural look and feel.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/Rootcanel.jpeg" alt="Root Canal Treatment">
+      <div class="service-name">Root Canal Treatment</div>
+      <p>Relieve pain and save infected or damaged teeth by removing the infected pulp and sealing the tooth to prevent
+        future issues</p>
+    </div>
+    <div class="service-card">
+      <img src="image/Periodontic.jpg" alt="Periodontics">
+      <div class="service-name">Periodontics</div>
+      <p>Specialized care for your gums. Treat gum diseases like gingivitis and periodontitis to maintain strong gums
+        and avoid tooth loss.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="image/Oralser.webp" alt="Oral Surgery">
+      <div class="service-name">Oral Surgery</div>
+      <p>We offer a range of surgical procedures including complex tooth extractions, cyst removal, and other minor oral
+        surgeries.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/pediatric-dentist-1024x683.jpg" alt="Pediatric Dentistry">
+      <div class="service-name">Pediatric Dentistry</div>
+      <p>Gentle, friendly dental care tailored for children. We focus on prevention and education to build healthy
+        dental habits from a young age.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/denturesPartial.jpeg" alt="Dentures and Partials">
+      <div class="service-name">Dentures and Partials</div>
+      <p>Restore your smile with full or partial dentures. Custom-made to fit comfortably and help with chewing,
+        speaking, and facial aesthetics</p>
+    </div>
+    <div class="service-card">
+      <img src="image/3D.jpg" alt="3rd Molar Extraction">
+      <div class="service-name">3rd Molar Extraction</div>
+      <p>Safe and efficient removal of impacted or misaligned wisdom teeth to prevent pain, crowding, and infection</p>
+    </div>
+    <div class="service-card">
+      <img src="image/Smile-Designing.webp" alt="Smile Designing">
+      <div class="service-name">Smile Designing</div>
+      <p>Personalized smile makeovers using a combination of cosmetic techniques to create a perfect, balanced smile
+        just for you.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/Full-Mouth-Rehabilitation-2.jpg" alt="Full Mouth Rehabilitation (FMR)">
+      <div class="service-name">Full Mouth Rehabilitation (FMR)</div>
+      <p>Comprehensive restoration of all teeth to improve function, aesthetics, and oral health — ideal for patients
+        with worn, missing, or damaged teeth</p>
+    </div>
+    <div class="service-card">
+      <img src="image/jewellery.webp" alt="Tooth Jewellery">
+      <div class="service-name">Tooth Jewellery</div>
+      <p>A trendy, non-invasive way to add sparkle to your smile. Quick application and easily removable when desired.
+      </p>
+    </div>
+    <div class="service-card">
+      <img src="image/FlapSurgery.jpeg" alt="Flap Surgery">
+      <div class="service-name">Flap Surgery</div>
+      <p>Advanced gum surgery to treat deep periodontal pockets and restore gum health, preventing further damage and
+        tooth loss.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/scalepalishing.jpeg" alt="Dental Scaling and Polishing">
+      <div class="service-name">Dental Scaling and Polishing</div>
+      <p>Professional cleaning to remove plaque, tartar, and surface stains, leaving your teeth smooth and sparkling.
+      </p>
+    </div>
+    <div class="service-card">
+      <img src="image/Surgical Extraction.jpg" alt="Surgical Extraction">
+      <div class="service-name">Surgical Extraction</div>
+      <p>Performed when a tooth is impacted, broken, or difficult to remove with a simple extraction. Done with utmost
+        care and precision.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/bridges-feature.jpg" alt="Dental Crown and Bridge">
+      <div class="service-name">Dental Crown and Bridge</div>
+      <p>Restore damaged or missing teeth with crowns (caps) and bridges. These fixed solutions are both functional and
+        aesthetically pleasing.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/Sinus Lifting.jpg" alt="Sinus Lifting">
+      <div class="service-name">Sinus Lifting</div>
+      <p>A procedure to add bone in the upper jaw near the molars and premolars, often required before placing dental
+        implants</p>
+    </div>
+
+  </div>
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Left Column: Logo & About -->
+      <div class="footer-col about">
+        <img src="logo.png" alt="K K Dental" class="logo" />
+        <p>
+          Dr. Karan Kaithwas, with 7 years of expertise, welcomes you to Dentalcare. Experience exceptional smile designing and dental implantologist,oral surgeon.
+        </p>
+        <div class="social-icons">
+          <a href="http://wa.me/919610178202"><img
+              src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" /></a>
+          <a href="https://www.facebook.com/share/196fgCyUNY/?mibextid=wwXIfr"><img
+              src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/kk_dental_hospital_nagpur?igsh=MWs5MW4zaGFrZnhiZA%3D%3D&utm_source=qr"><img
+              src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" /></a>
+        </div>
+      </div>
+
+      <!-- Website Links -->
+      <div class="footer-col">
+        <h4>Website Links</h4>
+        <ul>
+          <li><a href="index.html">› Home</a></li>
+          <li><a href="about.html">› About Us</a></li>
+          <li><a href="dental.html">› Dental</a></li>
+          <li><a href="skin.html">› Skin</a></li>
+          <li><a href="contact.html">› Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Skin Treatments</a></li>
+          <li><a href="#">Hair & Nails</a></li>
+          <li><a href="#">Anti Aging</a></li>
+          <li><a href="#">Cosmetic Surgery</a></li>
+          <li><a href="#">Laser Treatments</a></li>
+        </ul>
+      </div>
+
+      <!-- Hadapsar Clinic -->
+      <div class="footer-col">
+        <h4>Nagpur Hospital</h4>
+        <p>
+          K K Dental Hospital,<br />
+          Meshram building,<br />
+          above pachpaoli medical shop,<br />
+          towards awade babu road,nagpur,<br />
+          Maharashtra-440017<br />
+          <strong>Call:</strong> +91-9322-338-004
+        </p>
+      </div>
+
+      <!-- Camp Clinic -->
+     
+    </div>
+
+    <div class="footer-bottom">
+      © Copyright K.K. Dental & Dhriva Skincare Center. All Rights Reserved.
+    </div>
+  </footer>
+
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dental Services</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+     padding: 10px;
+    }
+
+  
+
+    h1 {
+      margin-top: 40px;
+      text-align: center;
+      margin-bottom: 50px;
+      color: black;
+      text-shadow: 0 12px 16px rgb(74, 69, 69);
+    }
+
+    .services-grid {
+      padding-left: 130px;
+      padding-right: 130px;
+      display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+    }
+
+    .service-card {
+      background:  #FFF1D6 ;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.2s ease;
+      min-height: 350px;
+      width: 350px;
+      margin-bottom: 20px;
+      color: black;
+    }
+
+    .service-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .service-name {
+      padding: 15px;
+      font-weight: bold;
+      color: black;
+    }
+
+    .service-name:hover {
+      color:rgb(239, 99, 99);
+    }
+    
+    nav {
+margin-top: auto;
+     justify-content: space-between;
+     align-items: center;
+     max-width: 100%;
+     margin: 0 auto;
+     height: 90px;
+     padding: 0 20px;
+   }
+   .logo {
+     font-size: 24px;
+     font-weight: bold;
+   }
+   .nav-links {
+     display: flex;
+     gap: 2rem;
+     list-style: none;
+   }
+   .nav-links a {
+     text-decoration: none;
+     color: #333;
+     font-size: 18px;
+     padding: 10px 15px;
+     border-radius: 5px;
+     transition: background 0.3s ease;
+   }
+   .nav-links a:hover {
+     background-color: #a24b4d;
+     color: white;
+   }
+
+   @media (max-width: 768px) {
+     nav {
+       flex-direction: column;
+       align-items: flex-start;
+     }
+
+     .nav-links {
+       flex-direction: column;
+       width: 100%;
+       display: none;
+     }
+
+     .nav-links.active {
+       display: flex;
+     }
+    }
+     .menu-toggle {
+       display: block;
+       cursor: pointer;
+       font-size: 22px;
+     }
+
+     .contact-wrapper {
+       flex-direction: column;
+     }
+
+     .contact-info, .map-container {
+       flex: 1 1 100%;
+       padding: 0;
+     }
+    nav {
+     
+     justify-content: space-between;
+     align-items: center;
+     max-width: 100%;
+     margin: 0 auto;
+     height: 90px;
+     padding: 0 20px;
+   }
+   .logo {
+     font-size: 45px;
+     font-weight: bold;
+     width: 100px;
+   }
+   .nav-links {
+     display: flex;
+     gap: 2rem;
+     list-style: none;
+   }
+   .nav-links a {
+     text-decoration: none;
+     color: #efecec;
+     font-size: 18px;
+     padding: 10px 15px;
+     border-radius: 5px;
+     transition: background 0.3s ease;
+   }
+   .nav-links a:hover {
+     background-color: #a24b4d;
+     color: white;
+   }
+
+   @media (max-width: 768px) {
+     nav {
+       flex-direction: column;
+       align-items: flex-start;
+     }
+
+     .nav-links {
+       flex-direction: column;
+       width: 100%;
+       display: none;
+     }
+
+     .nav-links.active {
+       display: flex;
+     }
+
+     .menu-toggle {
+       display: block;
+       cursor: pointer;
+       font-size: 22px;
+     }
+
+     .contact-wrapper {
+       flex-direction: column;
+     }
+
+     .contact-info, .map-container {
+       flex: 1 1 100%;
+       padding: 0;
+     }
+
+     .map-container iframe {
+       height: 250px;
+     }
+
+     .footer-container {
+       grid-template-columns: 1fr;
+       text-align: center;
+     }
+
+     .social-icons {
+       justify-content: center;
+     }
+   }
+   
+   /* Footer Container */
+   .footer {
+     background-color: #ffffff;
+     font-family: 'Arial', sans-serif;
+     font-size: 14px;
+     color: #333;
+     border-top: 1px solid #ddd;
+   }
+
+   /* Grid Layout */
+   .footer-container {
+     max-width: 1200px;
+     margin: auto;
+     padding: 40px 20px;
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+     gap: 30px;
+   }
+
+   /* Column Headings */
+   .footer h4 {
+     font-size: 16px;
+     margin-bottom: 10px;
+     border-bottom: 2px solid #a24b4d;
+     display: inline-block;
+     padding-bottom: 5px;
+     color: #004d4d;
+   }
+
+   /* List Styles */
+   .footer ul {
+     list-style: none;
+     padding: 0;
+   }
+
+   .footer ul li {
+     margin: 5px 0;
+   }
+
+   .footer ul li a {
+     text-decoration: none;
+     color: #333;
+     transition: color 0.3s ease;
+   }
+
+   .footer ul li a:hover {
+     color: #a24b4d;
+   }
+
+   /* About Column */
+   .footer-col.about {
+     max-width: 280px;
+   }
+
+   .footer-col.about p {
+     margin: 10px 0;
+   }
+
+   /* Logo */
+   .footer .logo {
+     height: 40px;
+     margin-bottom: 10px;
+   }
+
+   /* Social Icons */
+   .social-icons a {
+     display: inline-block;
+     margin-right: 10px;
+   }
+
+   .social-icons img {
+     width: 20px;
+     height: 20px;
+   }
+
+   /* Bottom Copyright */
+
+     * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+   }
+
+   body {
+     font-family: 'Segoe UI', sans-serif;
+   }
+
+   nav {
+     background-color: #f7f7f6;
+     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+     padding: 15px 20px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     position: sticky;
+     top: 0;
+     z-index: 999;
+   }
+
+   .logo {
+     font-size: 22px;
+     font-weight: bold;
+     color: #a24b4d;
+   }
+
+   .tagline {
+     font-size: 13px;
+     color: #666;
+   }
+
+   .nav-links {
+     display: flex;
+     list-style: none;
+     gap: 20px;
+   }
+
+   .nav-links li {
+     position: relative;
+   }
+
+   .nav-links a {
+     text-decoration: none;
+     color: #333;
+     font-weight: 10S0;
+     padding: 8px 12px;
+     border-radius: 5px;
+     transition: background 0.3s;
+   }
+
+   .nav-links a:hover {
+     background-color: #a24b4d;
+     color: #fff;
+   }
+
+   
+  
+
+   /* Toggle icon */
+   .menu-toggle {
+     font-size: 24px;
+     display: none;
+     cursor: pointer;
+   }
+   .footer-bottom {
+     text-align: center;
+     background-color:#49525C;
+     color: white;
+     padding: 10px;
+     font-size: 13px;
+   }
+   .logo {
+ display: flex;
+ align-items: center;
+ 
+}
+
+.logo img {
+ height: 80px; /* Adjust as needed */
+ width: auto; /* Keeps aspect ratio */
+ max-width: 100%;
+ object-fit: contain;
+}
+
+ /* Responsive */
+ @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        background-color: #fff;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        display: none;
+        padding: 20px 0;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+      
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+     
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo"><img src="img/logo.jpg"></div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+       <li><a href="dental.html">Dental</a></li>
+       <li><a href="skin.html">Skin</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>Our SkinCare Services</h1>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="image/Hydrafacial.jpg" alt="Hydra Facial">
+      <div class="service-name">Hydra Facial</div>
+      <p>A deep-cleansing, exfoliating, and hydrating facial that delivers instant glow and nourishment using a patented
+        Vortex-Fusion technology</p>
+    </div>
+
+    <div class="service-card">
+      <img src="image/bbglowp.jpg" alt="BB Glow Treatment ">
+      <div class="service-name">BB Glow Treatment </div>
+      <p>A semi-permanent skin treatment that gives a dewy, radiant look similar to BB cream. Helps even out skin tone
+        and reduce imperfections.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/faceprp.jpg" alt="Face PRP
+        ">
+      <div class="service-name">Face PRP
+      </div>
+      <p>Uses your own blood's growth factors to naturally rejuvenate your skin, reduce wrinkles, and improve tone and
+        texture.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="image/hairprp.jpg" alt="Hair PRP ">
+      <div class="service-name">Hair PRP </div>
+      <p>A natural treatment to promote hair growth, reduce hair fall, and improve scalp health by injecting platelets
+        into the scalp.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/VampireFac.webp" alt="Vampire Facial
+        ">
+      <div class="service-name">Vampire Facial
+      </div>
+      <p>A combination of microneedling and PRP to improve skin texture, reduce fine lines, and boost collagen for
+        youthful-looking skin.
+
+      </p>
+    </div>
+    <div class="service-card">
+      <img src="image/MicroNeedling.jpeg" alt="Micro Needling">
+      <div class="service-name">Micro Needling</div>
+      <p>Tiny needles create controlled micro-injuries to stimulate collagen production, reduce scars, stretch marks,
+        and fine lines.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/KoreanGlass.jpeg" alt="Korean Glass Treatment
+        ">
+      <div class="service-name">Korean Glass Treatment
+      </div>
+      <p>Achieve flawless, luminous skin with this multi-step Korean facial focused on hydration, clarity, and glow.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/Permanent.jpg" alt="Permanent Makeup
+        ">
+      <div class="service-name">Permanent Makeup
+      </div>
+      <p>Enhance your features with long-lasting makeup for eyebrows, eyeliner, and lips — ideal for busy lifestyles.
+      </p>
+    </div>
+    <div class="service-card">
+      <img src="image/Perlips.jpg" alt="Permanent Lipstick">
+      <div class="service-name">Permanent Lipstick</div>
+      <p>Semi-permanent lip tinting that defines your lips and adds natural-looking color without daily application.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/perspot.jpg" alt="Permanent Beauty Spot
+        ">
+      <div class="service-name">Permanent Beauty Spot
+      </div>
+      <p>Create an elegant and natural-looking mole/beauty spot to enhance facial beauty and symmetry.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/smp.jpg" alt="SMP
+        ">
+      <div class="service-name">SMP
+      </div>
+      <p>A non-invasive solution for thinning hair and bald spots using tiny pigment dots that replicate hair follicles.
+      </p>
+    </div>
+    <div class="service-card">
+      <img src="image/Microblading.jpg" alt="Microblading 
+        ">
+      <div class="service-name">Microblading
+      </div>
+      <p>A semi-permanent brow enhancement technique that creates natural-looking, fuller eyebrows using fine, hair-like
+        strokes.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/Laser Hair Removal.webp" alt="Laser Hair Removal">
+      <div class="service-name">Laser Hair Removal</div>
+      <p>Safe, pain-free hair reduction using advanced laser technology for smooth, long-lasting results across all skin
+        types.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/ChemicalPeeling.jpeg" alt="Chemical Peeling">
+      <div class="service-name">Chemical Peeling</div>
+      <p>Exfoliate dead skin cells and treat acne, pigmentation, and dull skin using medical-grade chemical solutions.
+      </p>
+    </div>
+    <div class="service-card">
+      <img src="image/hollywood-facial-1024x569.jpg" alt="Hollywood Facial">
+      <div class="service-name">Hollywood Facial</div>
+      <p>A red-carpet-ready treatment that instantly brightens, tightens, and rejuvenates your skin with zero downtime.
+      </p>
+    </div>
+    <div class="service-card">
+      <img src="image/Carbon.jpeg" alt="Carbon Laser Peel">
+      <div class="service-name">Carbon Laser Peel</div>
+      <p>A deep-cleansing laser treatment that targets acne, dullness, and large pores, leaving your skin smooth and
+        refreshed.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/TattooRemoval.jpeg" alt="Tattoo Removal">
+      <div class="service-name">Tattoo Removal</div>
+      <p>Advanced laser technology to safely and effectively remove unwanted tattoos without damaging surrounding skin.
+      </p>
+    </div>
+    <div class="service-card">
+      <img src="image/ColourTattoo.jpeg" alt="Color Tattoo Removal">
+      <div class="service-name">Color Tattoo Removal</div>
+      <p>Specialized laser treatment for removing colored ink tattoos, often more challenging than black tattoos.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/MoleRe.jpeg" alt="Mole Removal">
+      <div class="service-name">Mole Removal</div>
+      <p>Safe and minimally invasive procedures to remove unwanted moles with minimal scarring.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/skintan.jpeg" alt="Skin Tan Removal">
+      <div class="service-name">Skin Tan Removal</div>
+      <p>Brighten your complexion by removing sun tan and pigmentation for a more even skin tone.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/wartsremovel.jpeg" alt="Warts Removal">
+      <div class="service-name">Warts Removal</div>
+      <p>Quick and painless removal of warts using laser or cryotherapy, preventing recurrence.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/fullbodywhite.jpg" alt="Full Body Whitening Treatment">
+      <div class="service-name">Full Body Whitening Treatment</div>
+      <p>Skin lightening treatments to achieve an even-toned and brighter complexion across the entire body.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/GlutathioneTreatment.jpg" alt="Glutathione IV Treatment">
+      <div class="service-name">Glutathione IV Treatment</div>
+      <p>A powerful antioxidant therapy that detoxifies your body and naturally lightens skin tone from within.</p>
+    </div>
+    <div class="service-card">
+      <img src="image/Skin Tightening.jpg" alt="Skin Tightening">
+      <div class="service-name">Skin Tightening</div>
+      <p>Non-surgical treatments using RF or ultrasound to lift, firm, and tighten loose or sagging skin.</p>
+    </div>
+  </div>
+<footer class="footer">
+    <div class="footer-container">
+      <!-- Left Column: Logo & About -->
+      <div class="footer-col about">
+        <img src="logo.png" alt="K K Dental" class="logo" />
+        <p>
+          Dr. Karan Kaithwas, with 7 years of expertise, welcomes you to Dentalcare. Experience exceptional smile designing and dental implantologist,oral surgeon.
+        </p>
+        <div class="social-icons">
+          <a href="http://wa.me/919610178202"><img
+              src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" /></a>
+          <a href="https://www.facebook.com/share/196fgCyUNY/?mibextid=wwXIfr"><img
+              src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/kk_dental_hospital_nagpur?igsh=MWs5MW4zaGFrZnhiZA%3D%3D&utm_source=qr"><img
+              src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" /></a>
+        </div>
+      </div>
+
+      <!-- Website Links -->
+      <div class="footer-col">
+        <h4>Website Links</h4>
+        <ul>
+          <li><a href="index.html">› Home</a></li>
+          <li><a href="about.html">› About Us</a></li>
+          <li><a href="dental.html">› Services</a></li>
+          <li><a href="#">› Blog</a></li>
+          <li><a href="contact.html">› Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Skin Treatments</a></li>
+          <li><a href="#">Hair & Nails</a></li>
+          <li><a href="#">Anti Aging</a></li>
+          <li><a href="#">Cosmetic Surgery</a></li>
+          <li><a href="#">Laser Treatments</a></li>
+        </ul>
+      </div>
+
+      <!-- Hadapsar Clinic -->
+      <div class="footer-col">
+        <h4>Nagpur Hospital</h4>
+        <p>
+          K K Dental Hospital,<br />
+          Meshram building,<br />
+          above pachpaoli medical shop,<br />
+          towards awade babu road,nagpur,<br />
+          Maharashtra-440017<br />
+          <strong>Call:</strong> +91-9322-338-004
+        </p>
+      </div>
+
+      <!-- Camp Clinic -->
+     
+    </div>
+
+    <div class="footer-bottom">
+      © Copyright K.K. Dental & Riva Skincare Center. All Rights Reserved.
+    </div>
+  </footer>
+
+
+</body>
+
+</html>

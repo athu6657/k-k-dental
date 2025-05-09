@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - K.K. Dental Clinic</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+     
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      color: #222;
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #000;
+      font-size: 18px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: #a24b4d;
+      color: white;
+    }
+
+   
+
+    .clinic-photo {
+      height: 300px;
+      background: url(./img3.webp) no-repeat center/cover;
+    }
+
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 2rem;
+    }
+
+    .contact-info {
+      flex: 1 1 45%;
+    }
+
+    .map-container {
+      flex: 1 1 45%;
+      margin-top: 20px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-icons img {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+
+    .footer {
+      background-color: #f9f9f9;
+      padding: 2rem 1rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer h4 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #004d4d;
+    }
+
+    .footer ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .footer ul li a:hover {
+      color: #00b7b7;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      background-color: #00b7b7;
+      color: white;
+      padding: 10px;
+      font-size: 13px;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 22px;
+      }
+
+      .contact-wrapper {
+        flex-direction: column;
+      }
+
+      .contact-info,
+      .map-container {
+        flex: 1 1 100%;
+        padding: 0;
+      }
+
+      .map-container iframe {
+        height: 250px;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer {
+      background-color: #ffffff;
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      color: #333;
+      border-top: 1px solid #ddd;
+    }
+
+    /* Grid Layout */
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    /* Column Headings */
+    .footer h4 {
+      font-size: 16px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #00b7b7;
+      display: inline-block;
+      padding-bottom: 5px;
+      color: #004d4d;
+    }
+
+    /* List Styles */
+    .footer ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer ul li {
+      margin: 5px 0;
+    }
+
+    .footer ul li a {
+      text-decoration: none;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+
+    .footer ul li a:hover {
+      color: #00b7b7;
+    }
+
+    /* About Column */
+    .footer-col.about {
+      max-width: 280px;
+    }
+
+    .footer-col.about p {
+      margin: 10px 0;
+    }
+
+    /* Logo */
+    .footer .logo {
+      height: 90px;
+      width: 180px;
+      margin-bottom: 10px;
+      padding-left: 50px;
+    }
+    /* Social Icons */
+    .social-icons a {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .social-icons img {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Bottom Copyright */
+    .footer-bottom {
+      background-color: #00bcbc; /* Aqua background */
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  height: 100%; 
+  display: flex;
+  align-items: start;
+  justify-content: center;
+    }
+
+      .social-icons {
+        justify-content: center;
+      }
+      .content {
+      height: 40vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .content h2 {
+      font-size: 2rem;
+     
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+ 
+    .contact-section {
+  position: absolute;
+}
+
+.contact-header-img {
+  width: 50%;
+  height: 50vh;
+  object-fit: cover;
+}
+
+.content {
+  position: absolute;
+  top: 30%;
+  left: 32%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  z-index: 2;
+  padding: 2rem;
+ 
+  border-radius: 10px;
+}
+    }
+    
+    .content {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .content h2 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+   .content p{
+    size: 30px;
+   }
+    .contact-section {
+  position: relative;
+}
+
+.contact-header-img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.content {
+  position: absolute;
+  top: 30%;
+  left: 32%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  z-index: 2;
+  padding: 2rem;
+ 
+  border-radius: 10px;
+}
+.logo img {
+      height: 80px;
+      /* Adjust as needed */
+      width: auto;
+      /* Keeps aspect ratio */
+      max-width: 100%;
+      object-fit: contain;
+      padding-left: 0%;
+    }
+
+
+
+
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo"><img src="img/logo.jpg"></div>
+      <div class="logo">K.K.DENTAL HOSPITAL</div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="dental.html">Dental</a></li>
+        <li><a href="skin.html">Skincare</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li>
+          <a href="https://wa.me/918080485836" target="_blank">
+            <i class="bi bi-whatsapp me-1"></i> WhatsApp
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="contact-section">
+    <img src="FINAL IMAGE/contactpage.png" alt="Dental Clinic" class="contact-header-img">
+    <div class="content">
+      <h2>For Getting Best Services Contact Us...</h2>
+    
+    </div>
+
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <h2>CONTACT US</h2>
+      <h3>K.K.DENTAL CLINIC</h3>
+      <p><strong>Address:</strong> K.K Dental Hospital, Meshram building,above pachpaoli medical shop,lashkaribagh,towards
+        awade babu road,nagpur,Maharashtra-440017
+      </p>
+      <p><strong>Phone:</strong> +91 9610178202
+      </p>
+      <p><strong>Email:</strong> karankaithwas1234@gmail.com
+      </p>
+      <div class="social-icons">
+        <a href="http://wa.me/919610178202"><img
+            src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" /></a>
+        <a href="https://www.facebook.com/share/196fgCyUNY/?mibextid=wwXIfr"><img
+            src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></a>
+        <a href="https://www.instagram.com/kk_dental_hospital_nagpur?igsh=MWs5MW4zaGFrZnhiZA%3D%3D&utm_source=qr"><img
+            src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" /></a>
+      </div>
+    </div>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.636088957074!2d79.09768507495463!3d21.16687588302099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c1195f60a695%3A0x5fc2b68751a5f9dd!2sKK%20Dental%20Hospital%20And%20Charitable%20Trust!5e0!3m2!1sen!2sin!4v1745319047037!5m2!1sen!2sin"
+        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+  
+</div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div>
+        <img src="" alt="K K Dental Hospital" class="logo" />
+        <h4>About</h4>
+        <p> Dr. Karan Kaithwas, with 7 years of expertise, welcomes you to Dentalcare. Experience exceptional smile designing and dental implantologist,oral surgeon.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Website Links</h4>
+        <ul>
+          <li><a href="index.html">› Home</a></li>
+          <li><a href="about.html">› About Us</a></li>
+          <li><a href="dental.html">› Services</a></li>
+          <li><a href="#">› Blog</a></li>
+          <li><a href="contact.html">› Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Skin Treatments</a></li>
+          <li><a href="#">Periodontics</a></li>
+          <li><a href="#">Dental Treatments</a></li>
+          <li><a href="#">Cosmetic Surgery</a></li>
+          <li><a href="#">Laser Treatments</a></li>
+        </ul>
+      </div>
+
+      <!-- Nagpur Clinic -->
+      <div class="footer-col">
+        <h4>Nagpur Clinic</h4>
+
+        <p>
+          K K Dental Hospital,<br />
+          Meshram building,<br />
+          above pachpaoli medical shop,<br />
+          towards awade babu road,nagpur,<br />
+          Maharashtra-440017<br />
+
+          <strong>Call:</strong> +91-9322-338-004
+        </p>
+      </div>
+
+       
+  
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
+</body>
+
+</html>
