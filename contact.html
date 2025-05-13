@@ -19,52 +19,69 @@
       background-color: #fff;
       color: #222;
       line-height: 1.6;
-      padding-top: 80px;
     }
 
-    header {
-      background-color: #fff;
-      padding: 15px 0;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     nav {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    .logo {
+    .logo1 {
       font-size: 24px;
       font-weight: bold;
+      padding-left: 0%;
+      padding-right: 20px;
+
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    nav ul li a {
+      color: black;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: #92acac;
     }
 
     .nav-links {
+      list-style: none;
       display: flex;
       gap: 2rem;
-      list-style: none;
+    }
+
+    .nav-links li {
+      position: relative;
     }
 
     .nav-links a {
       text-decoration: none;
-      color: #000;
-      font-size: 18px;
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      background-color: #a24b4d;
-      color: white;
+      color: #efeeee;
     }
 
    
@@ -114,7 +131,6 @@
 
     .footer {
       background-color: #f9f9f9;
-      padding: 2rem 1rem;
     }
 
     .footer-container {
@@ -148,8 +164,8 @@
 
     .footer-bottom {
       text-align: center;
-      background-color: #00b7b7;
-      color: white;
+      background-color: #FFF1D6;
+      color: black;
       padding: 10px;
       font-size: 13px;
     }
@@ -273,8 +289,8 @@
 
     /* Bottom Copyright */
     .footer-bottom {
-      background-color: #00bcbc; /* Aqua background */
-  color: white;
+      background-color: #FFF1D6; /* Aqua background */
+  color: black;
   padding: 10px;
   text-align: center;
   font-size: 14px;
@@ -381,25 +397,40 @@
       padding-left: 0%;
     }
 
-
+    .footer .logo {
+      height: 40px;
+      margin-bottom: 10px;
+    }
 
 
 
   </style>
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
+
 <body>
-  <header>
-    <nav>
-      <div class="logo"><img src="img/logo.jpg"></div>
-      <div class="logo">K.K.DENTAL HOSPITAL</div>
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="dental.html">Dental</a></li>
-        <li><a href="skin.html">Skincare</a></li>
-        <li><a href="contact.html">Contact</a></li>
+
+
+  <header class=" sticky top-0 z-50 glass">
+    <nav class=" mx-auto flex items-center justify-evenly p-4">
+        <div class=" flex flex-row items-center space-x-4">
+        <div class="flex items-center space-x-4">
+          <a href="index.html"><img src="img/logo.jpg" class="h-10" alt="Logo"></a>
+          <span class="text-lg font-semibold">K.K. Dental Hospital</span>
+        </div>
+        <div class="block lg:hidden">
+          <button id="menuToggle" class="text-3xl">☰</button>
+        </div>
+        </div>
+      <ul id="navLinks" class="hidden lg:flex space-x-6 text-base font-medium">
+        <li><a href="index.html" class="hover:text-blue-600">Home</a></li>
+        <li><a href="about.html" class="hover:text-blue-600">About</a></li>
+        <li><a href="dental.html" class="hover:text-blue-600">Dental</a></li>
+        <li><a href="skin.html" class="hover:text-blue-600">Skin</a></li>
+        <li><a href="contact.html" class="hover:text-blue-600">Contact</a></li>
         <li>
           <a href="https://wa.me/918080485836" target="_blank">
             <i class="bi bi-whatsapp me-1"></i> WhatsApp
@@ -407,7 +438,20 @@
         </li>
       </ul>
     </nav>
+    <ul id="mobileMenu" class="lg:hidden hidden flex-col space-y-4 px-6 pb-4 text-base font-medium shadow">
+      <li><a href="index.html" class="block hover:text-blue-600">Home</a></li>
+      <li><a href="about.html" class="block hover:text-blue-600">About</a></li>
+      <li><a href="dental.html" class="block hover:text-blue-600">Dental</a></li>
+      <li><a href="skin.html" class="block hover:text-blue-600">Skin</a></li>
+      <li><a href="contact.html" class="block hover:text-blue-600">Contact</a></li>
+      <li>
+        <a href="https://wa.me/918080485836" target="_blank">
+          <i class="bi bi-whatsapp me-1"></i> WhatsApp
+        </a>
+      </li>
+    </ul>
   </header>
+
 
   <div class="contact-section">
     <img src="FINAL IMAGE/contactpage.png" alt="Dental Clinic" class="contact-header-img">
@@ -446,59 +490,79 @@
   
 </div>
 
-  <footer class="footer">
-    <div class="footer-container">
-      <div>
-        <img src="" alt="K K Dental Hospital" class="logo" />
-        <h4>About</h4>
-        <p> Dr. Karan Kaithwas, with 7 years of expertise, welcomes you to Dentalcare. Experience exceptional smile designing and dental implantologist,oral surgeon.</p>
+<footer class="footer pt-10">
+  <div class="footer-container">
+    <!-- Left Column: Logo & About -->
+    <div class="footer-col about">
+      <img src="img/logo.jpg" alt="K K Dental" class="logo" />
+      <p>
+        Dr. Karan Kaithwas, with 7 years of expertise, welcomes you to Dentalcare. Experience exceptional smile designing and dental implantologist,oral surgeon.
+      </p>
+      <div class="social-icons">
+        <a href="http://wa.me/919610178202"><img
+            src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" /></a>
+        <a href="https://www.facebook.com/share/196fgCyUNY/?mibextid=wwXIfr"><img
+            src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></a>
+        <a href="https://www.instagram.com/kk_dental_hospital_nagpur?igsh=MWs5MW4zaGFrZnhiZA%3D%3D&utm_source=qr"><img
+            src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" /></a>
       </div>
-      <div class="footer-col">
-        <h4>Website Links</h4>
-        <ul>
-          <li><a href="index.html">› Home</a></li>
-          <li><a href="about.html">› About Us</a></li>
-          <li><a href="dental.html">› Services</a></li>
-          <li><a href="#">› Blog</a></li>
-          <li><a href="contact.html">› Contact Us</a></li>
-        </ul>
-      </div>
+    </div>
 
-      <!-- Services -->
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#">Skin Treatments</a></li>
-          <li><a href="#">Periodontics</a></li>
-          <li><a href="#">Dental Treatments</a></li>
-          <li><a href="#">Cosmetic Surgery</a></li>
-          <li><a href="#">Laser Treatments</a></li>
-        </ul>
-      </div>
+    <!-- Website Links -->
+    <div class="footer-col">
+      <h4>Website Links</h4>
+      <ul>
+        <li><a href="index.html">› Home</a></li>
+        <li><a href="about.html">› About Us</a></li>
+        <li><a href="dental.html">› Dental</a></li>
+        <li><a href="skin.html">› Skin</a></li>
+        <li><a href="contact.html">› Contact Us</a></li>
+      </ul>
+    </div>
 
-      <!-- Nagpur Clinic -->
-      <div class="footer-col">
-        <h4>Nagpur Clinic</h4>
+    <!-- Services -->
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Skin Treatments</a></li>
+        <li><a href="#">Hair & Nails</a></li>
+        <li><a href="#">Anti Aging</a></li>
+        <li><a href="#">Cosmetic Surgery</a></li>
+        <li><a href="#">Laser Treatments</a></li>
+      </ul>
+    </div>
 
-        <p>
-          K K Dental Hospital,<br />
-          Meshram building,<br />
-          above pachpaoli medical shop,<br />
-          towards awade babu road,nagpur,<br />
-          Maharashtra-440017<br />
+    <!-- Hadapsar Clinic -->
+    <div class="footer-col">
+      <h4>Nagpur Hospital</h4>
+      <p>
+        K K Dental Hospital,<br />
+        Meshram building,<br />
+        above pachpaoli medical shop,<br />
+        towards awade babu road,nagpur,<br />
+        Maharashtra-440017<br />
+        <strong>Call:</strong> +91-9322-338-004
+      </p>
+    </div>
 
-          <strong>Call:</strong> +91-9322-338-004
-        </p>
-      </div>
+    <!-- Camp Clinic -->
+   
+  </div>
 
-       
-  
-  </footer>
+  <div class="footer-bottom mt-10">
+    © Copyright K.K. Dental & Dhriva Skincare Center. All Rights Reserved.
+  </div>
+</footer>
 
   <script>
     function toggleMenu() {
       document.getElementById("navLinks").classList.toggle("active");
     }
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');  
+    });
+  
   </script>
 </body>
 
